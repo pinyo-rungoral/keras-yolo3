@@ -14,7 +14,7 @@ from yolo3.utils import get_random_data
 
 def _main():
     annotation_path = 'annotate-passport.txt'
-    log_dir = 'logs/000/'
+    log_dir = 'train_log'
     classes_path = 'model_data/voc_classes.txt'
     anchors_path = 'model_data/yolo_anchors.txt'
     class_names = get_classes(classes_path)
