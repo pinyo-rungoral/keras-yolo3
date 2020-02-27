@@ -38,7 +38,7 @@ def _main():
     reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=3, verbose=1)
     early_stopping = EarlyStopping(monitor='val_loss', min_delta=0, patience=10, verbose=1)
 
-    val_split = 0.1
+    val_split = 0.3
     with open(annotation_path) as f:
         lines = f.readlines()
     np.random.seed(10101)
@@ -60,7 +60,7 @@ def _main():
                 steps_per_epoch=max(1, num_train//batch_size),
                 validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
                 validation_steps=max(1, num_val//batch_size),
-                epochs=50,
+                epochs=100,
                 initial_epoch=0)
                 # callbacks=[logging, checkpoint])
         model.save(log_dir + 'model.h5')
@@ -79,8 +79,8 @@ def _main():
             steps_per_epoch=max(1, num_train//batch_size),
             validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
             validation_steps=max(1, num_val//batch_size),
-            epochs=100,
-            initial_epoch=50,
+            epochs=200,
+            initial_epoch=100,
             callbacks=[reduce_lr, early_stopping])
         model.save('model_final.h5')
 
