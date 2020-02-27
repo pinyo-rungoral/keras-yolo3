@@ -61,8 +61,7 @@ def _main():
                 validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
                 validation_steps=max(1, num_val//batch_size),
                 epochs=50,
-                initial_epoch=0,
-                callbacks=[checkpoint])
+                initial_epoch=0)
                 # callbacks=[logging, checkpoint])
         model.save(log_dir + 'model.h5')
 
