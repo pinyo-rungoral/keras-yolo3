@@ -29,6 +29,7 @@ def _main():
             freeze_body=2, weights_path='model_data/tiny_yolo_weights.h5')
     else:
         model = create_model(input_shape, anchors, num_classes,
+            load_pretrained = False,
             freeze_body=2, weights_path='model_data/yolo.h5') # make sure you know what you freeze
 
     logging = TensorBoard(log_dir=log_dir)
@@ -63,7 +64,7 @@ def _main():
                 initial_epoch=0,
                 callbacks=[checkpoint])
                 # callbacks=[logging, checkpoint])
-        model.save_weights(log_dir + 'trained_weights_stage_1.h5')
+        model.save(log_dir + 'model.h5')
 
     # Unfreeze and continue training, to fine-tune.
     # Train longer if the result is not good.
