@@ -12,8 +12,6 @@ from keras.models import Model
 from keras.regularizers import l2
 from yolo3.utils import compose
 
-K.set_floatx('float16')
-
 @wraps(Conv2D)
 def DarknetConv2D(*args, **kwargs):
     """Wrapper to set Darknet parameters for Convolution2D."""
